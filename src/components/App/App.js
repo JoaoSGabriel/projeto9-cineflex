@@ -5,6 +5,7 @@ import Navbar from "../Navbar/Navbar";
 import Home from "../Home/Home";
 import Schedule from "../Schedule/Schedule";
 import Session from "../Session/Session";
+import Sucess from "../Sucess/Sucess";
 
 export default function App () {
     return(
@@ -14,6 +15,7 @@ export default function App () {
                 <Route path="/" element={<Home />} />
                 <Route path="/filme" element={<Schedule />} />
                 <Route path="/assentos" element={<Session />} />
+                <Route path="/sucesso" element={<Sucess />} />
             </Routes>
         </BrowserRouter>
     );

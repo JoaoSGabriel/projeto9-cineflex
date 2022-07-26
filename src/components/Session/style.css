@@ -1,0 +1,96 @@
+.session-Component {
+    height: 483px;
+    overflow-y: scroll;
+}
+
+.seats-Session {
+    width: 340px;
+    height: auto;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.seats {
+    width: 26px;
+    height: 26px;
+    border-radius: 12px;
+    border: 1px solid #808F9D;
+    background-color: #C3CFD9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px 18px 0;
+}
+
+.status {
+    width: 340px;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto 42px auto;
+}
+
+.status-Type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.select {
+    background-color: #8DD7CF;
+    border: 1px solid #1AAE9E;
+}
+
+.undisponible {
+    background-color: #FBE192;
+    border: 1px solid #F7C52B;
+}
+
+.buyer-Data {
+    width: 340px;
+    margin: 0 auto 7px auto;
+}
+
+.buyer-Data p{
+    font: 'Roboto';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21.09px;
+    color: #293845;
+}
+
+.buyer-Data input {
+    width: 327px;
+    height: 51px;
+    border-radius: 3px;
+    border: 1px solid #D5D5D5;
+    font: 'Roboto';
+    font-weight: 400;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 21.09px;
+    color: #AFAFAF;
+}
+
+input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 1px solid #D5D5D5;
+    outline: 0;
+}
+
+.session-Button {
+    width: 225px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E8833A;
+    border-radius: 3px;
+    margin: 50px auto 30px auto;
+    font: 'Roboto';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21.09px;
+    color: #FFFFFF;
+}

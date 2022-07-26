@@ -10,7 +10,7 @@ export default function Schedule () {
             </div>
             <div className="horary">
                 <p>Quinta-feira - 24/06/2021</p>
-                <div className="session">
+                <div className="session-Schedule">
                     <Link to="/assentos">
                         <div className="schedule">
                             15:00
@@ -25,7 +25,7 @@ export default function Schedule () {
             </div>
             <div className="horary">
                 <p>Quinta-feira - 24/06/2021</p>
-                <div className="session">
+                <div className="session-Schedule">
                     <Link to="/assentos">
                         <div className="schedule">
                             15:00

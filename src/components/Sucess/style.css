@@ -1,0 +1,34 @@
+.title p {
+    font: 'Roboto';
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28.13px;
+    color: #247A6B;
+    text-align: center;
+}
+
+.sucess-Data {
+    height: 370px;
+    overflow-y: scroll;
+}
+
+.request-Sucess-Data {
+    margin: 0 0 40px 29px;
+}
+
+.request-Sucess-Data h2 {
+    font: 'Roboto';
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28.13px;
+    color: #293845;
+    margin: 0 0 10px 0;
+}
+
+.request-Sucess-Data p {
+    font: 'Roboto';
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 25.78px;
+    color: #293845;
+}
