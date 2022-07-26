@@ -1,0 +1,31 @@
+.horary {
+    margin: 0 0 23px 24px;
+}
+
+.session {
+    display: flex;
+}
+
+.horary p {
+    font: 'Roboto';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23.44px;
+    color: #293845;
+}
+
+.schedule {
+    width: 83px;
+    height: 43px;
+    border-radius: 3px;
+    background-color: #E8833A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 22px 8px 0 0;
+    font: 'Roboto';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21.09px;
+    color: #FFFFFF;
+}
