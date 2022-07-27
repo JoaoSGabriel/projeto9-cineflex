@@ -1,16 +1,10 @@
 .movies {
-    width: 375px;
+    width: 340px;
     height: 475px;
+    margin: 0 auto;
     overflow-y: scroll;
     display: flex;
-}
-
-.left-Movies,
-.rigth-Movies {
-    width: 188px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
 }
 
 .movie-Background {
@@ -21,7 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 0 11px 0;
+    margin: 0 0 11px 17px;
 }
 
 ::-webkit-scrollbar {
