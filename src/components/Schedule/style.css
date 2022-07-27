@@ -1,3 +1,8 @@
+.horary-Component {
+    height: 483px;
+    overflow-y: scroll;
+}
+
 .horary {
     margin: 0 0 23px 24px;
 }
