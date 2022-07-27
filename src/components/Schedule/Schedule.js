@@ -1,5 +1,4 @@
 import "./style.css"
-import Baseboard from "../Baseboard/Baseboard";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import React from "react";
@@ -26,17 +25,20 @@ function Horary (props) {
     );
 }
 
-export default function Schedule () {
+export default function Schedule (props) {
+    const {movieID} = props;
     const [movie_Sessions, setMovie_Sessions] = React.useState([]);
+    const [movie_Data, setMovie_Data] = React.useState([]);
 
     useEffect(() => {
-        const promisse = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies/2/showtimes");
+        const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${movieID}/showtimes`);
 
         promisse.then(answer => {
             setMovie_Sessions(answer.data.days);
+            setMovie_Data(answer.data);
         });
     }, []);
-
+    
     return(
         <>
             <div className="title">
@@ -45,7 +47,12 @@ export default function Schedule () {
             <div className="horary-Component">
                 {movie_Sessions.map(item => <Horary key={item.id} weekday={item.weekday} date={item.date} time1={item.showtimes[0].name} time2={item.showtimes[1].name}/>)}
             </div>
-            <Baseboard />
+            <div className="baseboard">
+                <div className="movie-Background">
+                    <img src={movie_Data.posterURL} alt="coverpage" />
+                </div>
+                <p>{movie_Data.title}</p>
+            </div>
         </>
     );
 }

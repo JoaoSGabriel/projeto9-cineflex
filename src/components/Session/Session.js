@@ -1,57 +1,9 @@
 import "./style.css";
 import Baseboard from "../Baseboard/Baseboard";
 import { Link } from "react-router-dom";
-
-const seats = [{
-    "id": 1,
-    "name": "1",
-    "isAvailable": false,
-},
-{
-    "id": 2,
-    "name": "2",
-    "isAvailable": true,
-},
-{
-    "id": 3,
-    "name": "3",
-    "isAvailable": true,
-},
-{
-    "id": 4,
-    "name": "4",
-    "isAvailable": true,
-},
-{
-    "id": 5,
-    "name": "5",
-    "isAvailable": true,
-},
-{
-    "id": 6,
-    "name": "6",
-    "isAvailable": true,
-},
-{
-    "id": 7,
-    "name": "7",
-    "isAvailable": true,
-},
-{
-    "id": 8,
-    "name": "8",
-    "isAvailable": true,
-},
-{
-    "id": 9,
-    "name": "9",
-    "isAvailable": true,
-},
-{
-    "id": 10,
-    "name": "10",
-    "isAvailable": true,
-}]
+import { useEffect } from "react";
+import React from "react";
+import axios from 'axios';
 
 function Seats (props) {
     const {numero} = props;
@@ -61,17 +13,23 @@ function Seats (props) {
 }
 
 export default function Session () {
+    const [movie_Seats, setMovie_Seats] = React.useState([]);
+
+    useEffect(() => {
+        const promisse = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/showtimes/26102021/seats");
+        
+        promisse.then(answer => {
+            setMovie_Seats(answer.data.seats);
+        });
+    }, []);
+
     return(
         <div className="session-Component">
             <div className="title">
                 <h1>Selecione o(s) assento(s)</h1>
             </div>
             <div className="seats-Session">
-                {seats.map(item => <Seats numero={item.name} />)}
-                {seats.map(item => <Seats numero={item.name} />)}
-                {seats.map(item => <Seats numero={item.name} />)}
-                {seats.map(item => <Seats numero={item.name} />)}
-                {seats.map(item => <Seats numero={item.name} />)}
+                {movie_Seats.map(item => <Seats key={item.id} numero={item.name} />)}
             </div>
             <div className="status">
                 <div className="status-Type">
