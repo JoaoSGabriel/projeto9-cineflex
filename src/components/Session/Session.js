@@ -1,6 +1,5 @@
 import "./style.css";
-import Baseboard from "../Baseboard/Baseboard";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import React from "react";
 import axios from 'axios';
@@ -13,15 +12,20 @@ function Seats (props) {
 }
 
 export default function Session () {
+    const params = useParams();
     const [movie_Seats, setMovie_Seats] = React.useState([]);
+    const [movie_Data_Session1, setMovie_Data_Session1] = React.useState([]);
+    const [movie_Data_Session2, setMovie_Data_Session2] = React.useState([]);
 
     useEffect(() => {
-        const promisse = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/showtimes/26102021/seats");
+        const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${50}/seats`);
         
         promisse.then(answer => {
             setMovie_Seats(answer.data.seats);
+            setMovie_Data_Session1(answer.data.movie);
+            setMovie_Data_Session2(answer.data.day);
         });
-    }, []);
+    }, [params.idSessao]);
 
     return(
         <div className="session-Component">
@@ -56,7 +60,15 @@ export default function Session () {
             <Link to="/sucesso">
                 <div className="session-Button">Reservar assentos</div>
             </Link>
-            <Baseboard />
+            <div className="baseboard">
+                <div className="movie-Background">
+                    <img src={movie_Data_Session1.posterURL} alt="coverpage" />
+                </div>
+                <div>
+                    <p>{movie_Data_Session1.title}</p>
+                    <p>{movie_Data_Session2.weekday} - {movie_Data_Session2.date}</p>
+                </div>
+            </div>
         </div>
     );
 }

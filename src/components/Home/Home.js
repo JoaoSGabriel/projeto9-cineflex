@@ -4,8 +4,18 @@ import React from "react";
 import axios from 'axios';
 import "./style.css";
 
-export default function Home (props) {
-    const {setMovieID} = props;
+function Movie (props) {
+    const {movie_ID, posterURL} = props;
+    return(
+        <Link to={`/sessoes/${movie_ID}`}>
+            <div className="movie-Background">
+                <img src={posterURL} alt="coverpage" />
+            </div>
+        </Link>
+    );
+}
+
+export default function Home () {
     const [movies_Theaters, setMovies_Theaters] = React.useState([]);
 
     useEffect(() => {
@@ -20,7 +30,7 @@ export default function Home (props) {
         <>
             <div className="title"><h1>Selecione o filme</h1></div>
             <div className="movies">
-                {movies_Theaters.map(item => <Link to="/filme"><div className="movie-Background" onClick={() => setMovieID(item.id)}><img src={item.posterURL} alt="coverpage" /></div></Link>)}
+                {movies_Theaters.map(item => <Movie key={item.id} movie_ID={item.id} posterURL={item.posterURL}/>)}
             </div>
         </>
     );

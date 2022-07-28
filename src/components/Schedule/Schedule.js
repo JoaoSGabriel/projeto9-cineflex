@@ -1,21 +1,21 @@
 import "./style.css"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import React from "react";
 import axios from 'axios';
 
 function Horary (props) {
-    const {weekday, date, time1, time2} = props;
+    const {weekday, date, session_ID, time1, time2} = props;
     return(
             <div className="horary">
                 <p>{weekday} - {date}</p>
                 <div className="session-Schedule">
-                    <Link to="/assentos">
+                    <Link to={`/assentos/${session_ID}`}>
                         <div className="schedule">
                             {time1}
                         </div>
                     </Link>
-                    <Link to="/assentos">
+                    <Link to={`/assentos/${session_ID}`}>
                         <div className="schedule">
                             {time2}
                         </div>
@@ -25,19 +25,19 @@ function Horary (props) {
     );
 }
 
-export default function Schedule (props) {
-    const {movieID} = props;
+export default function Schedule () {
+    const params = useParams();
     const [movie_Sessions, setMovie_Sessions] = React.useState([]);
-    const [movie_Data, setMovie_Data] = React.useState([]);
+    const [movie_Data_Schedule, setMovie_Data_Schedule] = React.useState([]);
 
     useEffect(() => {
-        const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${movieID}/showtimes`);
+        const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${params.idFilme}/showtimes`);
 
         promisse.then(answer => {
             setMovie_Sessions(answer.data.days);
-            setMovie_Data(answer.data);
+            setMovie_Data_Schedule(answer.data);
         });
-    }, []);
+    }, [params.idFilme]);
     
     return(
         <>
@@ -45,13 +45,13 @@ export default function Schedule (props) {
                 <h1>Selecione o horário</h1>
             </div>
             <div className="horary-Component">
-                {movie_Sessions.map(item => <Horary key={item.id} weekday={item.weekday} date={item.date} time1={item.showtimes[0].name} time2={item.showtimes[1].name}/>)}
+                {movie_Sessions.map(item => <Horary key={item.id} weekday={item.weekday} date={item.date} session_ID={item.id} time1={item.showtimes[0].name} time2={item.showtimes[1].name}/>)}
             </div>
             <div className="baseboard">
                 <div className="movie-Background">
-                    <img src={movie_Data.posterURL} alt="coverpage" />
+                    <img src={movie_Data_Schedule.posterURL} alt="coverpage" />
                 </div>
-                <p>{movie_Data.title}</p>
+                <p>{movie_Data_Schedule.title}</p>
             </div>
         </>
     );

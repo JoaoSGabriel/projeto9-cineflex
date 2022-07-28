@@ -36,3 +36,37 @@ h1 {
 .hidden {
     display: none;
 }
+
+.baseboard {
+    width: 375px;
+    height: 117px;
+    border-top: 1px solid #9EADBA;
+    background-color: #DFE6ED;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+
+.baseboard .movie-Background {
+    width: 64px;
+    height: 89px;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    margin: 0 0 0 10px;
+}
+
+.baseboard .movie-Background img {
+    width: 48px;
+    height: 72px;
+}
+
+.baseboard p {
+    font: 'Roboto';
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30.47px;
+    color: #293845;
+    margin: 0 0 0 14px;
+}
