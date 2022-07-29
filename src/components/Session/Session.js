@@ -11,12 +11,15 @@ function Seats (props) {
     );
 }
 
-export default function Session () {
+export default function Session (props) {
+    const {request_Data, setRequest_Data} = props;
     const params = useParams();
     const [movie_Seats, setMovie_Seats] = React.useState([]);
     const [movie_Data_Session1, setMovie_Data_Session1] = React.useState([]);
     const [movie_Data_Session2, setMovie_Data_Session2] = React.useState([]);
     const [movie_Data_Session3, setMovie_Data_Session3] = React.useState([]);
+
+    console.log(request_Data)
 
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${params.idSessao}/seats`);
@@ -29,6 +32,22 @@ export default function Session () {
         });
     }, [params.idSessao]);
 
+    
+    const [name, setName] = React.useState('');
+    const [registration, setRegistration] = React.useState('');
+
+    function sucessRequest (event) {
+        event.preventDefault();
+        setRequest_Data(
+        {movie:`${movie_Data_Session1.title}`,
+        date:`${movie_Data_Session2.date}-${movie_Data_Session3.name}`,
+        seats:[''],
+        buyerName:`${name}`,
+        buyerCPF: `${registration}`});
+        setName('');
+        setRegistration('');
+    }
+        
     return(
         <div className="session-Component">
             <div className="title">
@@ -51,17 +70,17 @@ export default function Session () {
                     <p>Indisponível</p>
                 </div>
             </div>
-            <div className="buyer-Data">
-                <p>Nome do comprador:</p>
-                <input type="text" placeholder="   Digite seu nome..."></input>
-            </div>
-            <div className="buyer-Data">
-                <p>CPF do comprador:</p>
-                <input type="number" placeholder="   Digite seu CPF..."></input>
-            </div>
-            <Link to="/sucesso">
-                <div className="session-Button">Reservar assentos</div>
-            </Link>
+            <form onSubmit={e => sucessRequest(e)}>
+                <div className="buyer-Data">
+                    <p>Nome do comprador:</p>
+                    <input type="text" placeholder="   Digite seu nome..." onChange={e => setName(e.target.value)} value={name}></input>
+                </div>
+                <div className="buyer-Data">
+                    <p>CPF do comprador:</p>
+                    <input type="text" placeholder="   Digite seu CPF..." onChange={e => setRegistration(e.target.value)} value={registration}></input>
+                </div>
+                <button type="submit" className="session-Button">Reservar assentos</button>
+            </form>
             <div className="baseboard">
                 <div className="movie-Background">
                     <img src={movie_Data_Session1.posterURL} alt="coverpage" />

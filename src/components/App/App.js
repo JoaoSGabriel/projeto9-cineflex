@@ -9,14 +9,15 @@ import Session from "../Session/Session";
 import Sucess from "../Sucess/Sucess";
 
 export default function App () {
+    const [request_Data, setRequest_Data] = React.useState({});
     return(
         <BrowserRouter>
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/sessoes/:idFilme" element={<Schedule />} />
-                <Route path="/assentos/:idSessao" element={<Session />} />
-                <Route path="/sucesso" element={<Sucess />} />
+                <Route path="/assentos/:idSessao" element={<Session request_Data={request_Data} setRequest_Data={setRequest_Data}/>} />
+                <Route path="/sucesso" element={<Sucess request_Data={request_Data}/>} />
             </Routes>
         </BrowserRouter>
     );
