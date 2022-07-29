@@ -9,7 +9,6 @@ import Session from "../Session/Session";
 import Sucess from "../Sucess/Sucess";
 
 export default function App () {
-
     return(
         <BrowserRouter>
             <Navbar />

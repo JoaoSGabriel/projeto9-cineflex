@@ -19,7 +19,7 @@ export default function Home () {
     const [movies_Theaters, setMovies_Theaters] = React.useState([]);
 
     useEffect(() => {
-        const promisse = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
+        const promisse = axios.get("https://mock-api.driven.com.br/api/v7/cineflex/movies");
 
         promisse.then(answer => {
             setMovies_Theaters(answer.data);

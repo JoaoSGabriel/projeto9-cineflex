@@ -16,14 +16,16 @@ export default function Session () {
     const [movie_Seats, setMovie_Seats] = React.useState([]);
     const [movie_Data_Session1, setMovie_Data_Session1] = React.useState([]);
     const [movie_Data_Session2, setMovie_Data_Session2] = React.useState([]);
+    const [movie_Data_Session3, setMovie_Data_Session3] = React.useState([]);
 
     useEffect(() => {
-        const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${50}/seats`);
+        const promisse = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${params.idSessao}/seats`);
         
         promisse.then(answer => {
             setMovie_Seats(answer.data.seats);
             setMovie_Data_Session1(answer.data.movie);
             setMovie_Data_Session2(answer.data.day);
+            setMovie_Data_Session3(answer.data);
         });
     }, [params.idSessao]);
 
@@ -66,7 +68,7 @@ export default function Session () {
                 </div>
                 <div>
                     <p>{movie_Data_Session1.title}</p>
-                    <p>{movie_Data_Session2.weekday} - {movie_Data_Session2.date}</p>
+                    <p>{movie_Data_Session2.weekday} - {movie_Data_Session3.name}</p>
                 </div>
             </div>
         </div>
