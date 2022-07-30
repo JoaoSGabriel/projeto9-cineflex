@@ -5,16 +5,19 @@ import React from "react";
 import axios from 'axios';
 
 function Seats (props) {
-    const {numero, isAvailable} = props;
+    const {id, numero, isAvailable, reserved_Seats, setReserved_Seats, number_Reserved_Seats, setNumber_Reserved_Seats} = props;
     const [choose, setChoose] = React.useState('seats');
     const [select, setSelect] = React.useState('true');
 
     function selectSeat (text) {
         if (text === 'false') {
             setChoose('seats');
+            setSelect('true');
         } else if (text === 'true') {
             setChoose('seats select');
             setSelect('false');
+            setReserved_Seats([...reserved_Seats, id]);
+            setNumber_Reserved_Seats([...number_Reserved_Seats, numero]);
         }
     }
 
@@ -51,35 +54,34 @@ export default function Session (props) {
             setMovie_Data_Session3(answer.data);
         });
     }, [params.idSessao]);
-    
+
     const [name, setName] = React.useState('');
     const [registration, setRegistration] = React.useState('');
-    const [request_Post, setRequest_Post] = React.useState({});
+    const [reserved_Seats, setReserved_Seats] = React.useState([]);
+    const [number_Reserved_Seats, setNumber_Reserved_Seats] = React.useState([]);
 
     function sucessRequest (event) {
         event.preventDefault();
         setRequest_Data(
         {movie:`${movie_Data_Session1.title}`,
-        date:`${movie_Data_Session2.date}-${movie_Data_Session3.name}`,
-        seats:[''],
+        date:`${movie_Data_Session2.date} - ${movie_Data_Session3.name}`,
+        seats: number_Reserved_Seats,
         buyerName:`${name}`,
         buyerCPF: `${registration}`});
-        setRequest_Post({
-            ids: [],
+        const request_Post = {
+            ids: reserved_Seats,
             name: `${name}`,
             cpf: `${registration}`
-        });
-        console.log(request_Post);
-
-        // const request = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", request_Post);
+        };
+        const request = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", request_Post);
         
-        // request.then(() => {
-        //     setName('');
-        //     setRegistration('');
-        //     navigate('/sucesso');
-        // })
+        request.then(() => {
+            setName('');
+            setRegistration('');
+            navigate('/sucesso');
+        })
 
-        // request.catch(() => alert('Opa, algo inesperado aconteceu!'));
+        request.catch(() => alert('Opa, algo inesperado aconteceu!'));
     }
         
     return(
@@ -88,7 +90,7 @@ export default function Session (props) {
                 <h1>Selecione o(s) assento(s)</h1>
             </div>
             <div className="seats-Session">
-                {movie_Seats.map(item => <Seats key={item.id} isAvailable={item.isAvailable} numero={item.name} />)}
+                {movie_Seats.map(item => <Seats key={item.id} id={item.id} isAvailable={item.isAvailable} numero={item.name} reserved_Seats={reserved_Seats} setReserved_Seats={setReserved_Seats} number_Reserved_Seats={number_Reserved_Seats} setNumber_Reserved_Seats={setNumber_Reserved_Seats}/>)}
             </div>
             <div className="status">
                 <div className="status-Type">

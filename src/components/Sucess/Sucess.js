@@ -3,6 +3,7 @@ import "./style.css";
 
 export default function Sucess (props) {
     const {request_Data} = props;
+    const seats_Buyed = request_Data.seats
 
     return(
         <>
@@ -17,7 +18,7 @@ export default function Sucess (props) {
                 </div>
                 <div className="request-Sucess-Data">
                     <h2>Ingressos</h2>
-                    <p>HELP</p>
+                    {seats_Buyed.map(item => <p>Assento: {item}</p>)}
                 </div>
                 <div className="request-Sucess-Data">
                     <h2>Comprador</h2>
