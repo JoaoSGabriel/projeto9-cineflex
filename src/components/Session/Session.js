@@ -6,11 +6,23 @@ import axios from 'axios';
 
 function Seats (props) {
     const {numero, isAvailable} = props;
+    const [choose, setChoose] = React.useState('seats');
+    const [select, setSelect] = React.useState('true');
+
+    function selectSeat (text) {
+        if (text === 'false') {
+            setChoose('seats');
+        } else if (text === 'true') {
+            setChoose('seats select');
+            setSelect('false');
+        }
+    }
+
     return (
     <>
         {isAvailable ? (
-            <div className="seats">
-                <div>{numero}</div>
+            <div className={choose}>
+                <div onClick={() => selectSeat(select)}>{numero}</div>
             </div>
         ) : (
             <div className="seats unavailable">
@@ -39,8 +51,6 @@ export default function Session (props) {
             setMovie_Data_Session3(answer.data);
         });
     }, [params.idSessao]);
-    console.log(movie_Seats);
-
     
     const [name, setName] = React.useState('');
     const [registration, setRegistration] = React.useState('');
