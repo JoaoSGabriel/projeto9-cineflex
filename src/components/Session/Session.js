@@ -5,10 +5,19 @@ import React from "react";
 import axios from 'axios';
 
 function Seats (props) {
-    const {numero} = props;
+    const {numero, isAvailable} = props;
     return (
-        <div className="seats">{numero}</div>
-    );
+    <>
+        {isAvailable ? (
+            <div className="seats">
+                <div>{numero}</div>
+            </div>
+        ) : (
+            <div className="seats unavailable">
+                <div onClick={() => alert("Esse assento não está disponível")}>{numero}</div>
+            </div>
+        )}
+    </>);
 }
 
 export default function Session (props) {
@@ -30,10 +39,12 @@ export default function Session (props) {
             setMovie_Data_Session3(answer.data);
         });
     }, [params.idSessao]);
+    console.log(movie_Seats);
 
     
     const [name, setName] = React.useState('');
     const [registration, setRegistration] = React.useState('');
+    const [request_Post, setRequest_Post] = React.useState({});
 
     function sucessRequest (event) {
         event.preventDefault();
@@ -43,9 +54,22 @@ export default function Session (props) {
         seats:[''],
         buyerName:`${name}`,
         buyerCPF: `${registration}`});
-        setName('');
-        setRegistration('');
-        navigate('/sucesso');
+        setRequest_Post({
+            ids: [],
+            name: `${name}`,
+            cpf: `${registration}`
+        });
+        console.log(request_Post);
+
+        // const request = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", request_Post);
+        
+        // request.then(() => {
+        //     setName('');
+        //     setRegistration('');
+        //     navigate('/sucesso');
+        // })
+
+        // request.catch(() => alert('Opa, algo inesperado aconteceu!'));
     }
         
     return(
@@ -54,7 +78,7 @@ export default function Session (props) {
                 <h1>Selecione o(s) assento(s)</h1>
             </div>
             <div className="seats-Session">
-                {movie_Seats.map(item => <Seats key={item.id} numero={item.name} />)}
+                {movie_Seats.map(item => <Seats key={item.id} isAvailable={item.isAvailable} numero={item.name} />)}
             </div>
             <div className="status">
                 <div className="status-Type">
@@ -66,18 +90,18 @@ export default function Session (props) {
                     <p>Disponível</p>
                 </div>
                 <div className="status-Type">
-                    <div className="seats undisponible"></div>
+                    <div className="seats unavailable"></div>
                     <p>Indisponível</p>
                 </div>
             </div>
             <form onSubmit={e => sucessRequest(e)}>
                 <div className="buyer-Data">
                     <p>Nome do comprador:</p>
-                    <input type="text" placeholder="   Digite seu nome..." onChange={e => setName(e.target.value)} value={name}></input>
+                    <input type="text" placeholder="   Digite seu nome..." onChange={e => setName(e.target.value)} value={name} required></input>
                 </div>
                 <div className="buyer-Data">
                     <p>CPF do comprador:</p>
-                    <input type="text" placeholder="   Digite seu CPF..." onChange={e => setRegistration(e.target.value)} value={registration}></input>
+                    <input type="text" placeholder="   Digite seu CPF..." onChange={e => setRegistration(e.target.value)} value={registration} required></input>
                 </div>
                 <button type="submit" className="session-Button">Reservar assentos</button>
             </form>
