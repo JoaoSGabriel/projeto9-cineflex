@@ -1,5 +1,5 @@
 import "./style.css";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import React from "react";
 import axios from 'axios';
@@ -12,14 +12,13 @@ function Seats (props) {
 }
 
 export default function Session (props) {
-    const {request_Data, setRequest_Data} = props;
+    const {setRequest_Data} = props;
+    const navigate = useNavigate();
     const params = useParams();
     const [movie_Seats, setMovie_Seats] = React.useState([]);
     const [movie_Data_Session1, setMovie_Data_Session1] = React.useState([]);
     const [movie_Data_Session2, setMovie_Data_Session2] = React.useState([]);
     const [movie_Data_Session3, setMovie_Data_Session3] = React.useState([]);
-
-    console.log(request_Data)
 
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${params.idSessao}/seats`);
@@ -46,6 +45,7 @@ export default function Session (props) {
         buyerCPF: `${registration}`});
         setName('');
         setRegistration('');
+        navigate('/sucesso');
     }
         
     return(

@@ -3,7 +3,6 @@ import "./style.css";
 
 export default function Sucess (props) {
     const {request_Data} = props;
-    console.log(request_Data);
 
     return(
         <>

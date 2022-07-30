@@ -16,7 +16,7 @@ export default function App () {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/sessoes/:idFilme" element={<Schedule />} />
-                <Route path="/assentos/:idSessao" element={<Session request_Data={request_Data} setRequest_Data={setRequest_Data}/>} />
+                <Route path="/assentos/:idSessao" element={<Session setRequest_Data={setRequest_Data}/>} />
                 <Route path="/sucesso" element={<Sucess request_Data={request_Data}/>} />
             </Routes>
         </BrowserRouter>
