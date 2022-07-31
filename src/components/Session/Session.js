@@ -68,7 +68,7 @@ export default function Session (props) {
         seats: number_Reserved_Seats,
         buyerName:`${name}`,
         buyerCPF: `${registration}`});
-        const request_Post = {
+        let request_Post = {
             ids: reserved_Seats,
             name: `${name}`,
             cpf: `${registration}`
@@ -78,6 +78,11 @@ export default function Session (props) {
         request.then(() => {
             setName('');
             setRegistration('');
+            request_Post = {
+                ids: "",
+                name: "",
+                cpf: ""
+            };
             navigate('/sucesso');
         })
 
