@@ -1,39 +1,9 @@
 import "./style.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import Seats from "../Seats/Seats";
 import React from "react";
 import axios from 'axios';
-
-function Seats (props) {
-    const {id, numero, isAvailable, reserved_Seats, setReserved_Seats, number_Reserved_Seats, setNumber_Reserved_Seats} = props;
-    const [choose, setChoose] = React.useState('seats');
-    const [select, setSelect] = React.useState('true');
-
-    function selectSeat (text) {
-        if (text === 'false') {
-            setChoose('seats');
-            setSelect('true');
-        } else if (text === 'true') {
-            setChoose('seats select');
-            setSelect('false');
-            setReserved_Seats([...reserved_Seats, id]);
-            setNumber_Reserved_Seats([...number_Reserved_Seats, numero]);
-        }
-    }
-
-    return (
-    <>
-        {isAvailable ? (
-            <div className={choose}>
-                <div onClick={() => selectSeat(select)}>{numero}</div>
-            </div>
-        ) : (
-            <div className="seats unavailable">
-                <div onClick={() => alert("Esse assento não está disponível")}>{numero}</div>
-            </div>
-        )}
-    </>);
-}
 
 export default function Session (props) {
     const {setRequest_Data} = props;
@@ -83,7 +53,11 @@ export default function Session (props) {
                 name: "",
                 cpf: ""
             };
-            navigate('/sucesso');
+            if (reserved_Seats.length > 0) {
+                navigate('/sucesso');
+            } else {
+                alert('Você precisa escolher ao menos uma poltrona para realizar o pedido!')
+            }
         })
 
         request.catch(() => alert('Opa, algo inesperado aconteceu!'));
