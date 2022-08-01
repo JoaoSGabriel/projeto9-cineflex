@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import React from "react";
 import axios from 'axios';
+import ButtonBack from "../ButtonBack/ButtonBack";
 
 function Horary (props) {
     const {weekday, date, time1, time2, index, movie_Sessions} = props;
@@ -42,6 +43,7 @@ export default function Schedule () {
     
     return(
         <>
+            <ButtonBack />
             <div className="title">
                 <h1>Selecione o horário</h1>
             </div>

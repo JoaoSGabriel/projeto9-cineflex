@@ -10,4 +10,11 @@
     font-size: 34px;
     line-height: 39.84px;
     color: #E8833A;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    top: 5;
+    left: 0;
 }

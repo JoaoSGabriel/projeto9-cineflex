@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Seats from "../Seats/Seats";
 import React from "react";
 import axios from 'axios';
+import ButtonBack from "../ButtonBack/ButtonBack";
 
 export default function Session (props) {
     const {setRequest_Data} = props;
@@ -65,6 +66,7 @@ export default function Session (props) {
         
     return(
         <div className="session-Component">
+            <ButtonBack />
             <div className="title">
                 <h1>Selecione o(s) assento(s)</h1>
             </div>
