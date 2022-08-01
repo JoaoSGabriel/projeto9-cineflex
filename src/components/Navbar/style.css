@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font: 'Roboto';
+    font-family: 'Roboto';
     font-weight: 400;
     font-size: 34px;
     line-height: 39.84px;
