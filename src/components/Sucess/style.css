@@ -1,5 +1,5 @@
 .title p {
-    font: 'Roboto';
+    font-family: 'Roboto';
     font-weight: 700;
     font-size: 24px;
     line-height: 28.13px;
@@ -17,7 +17,7 @@
 }
 
 .request-Sucess-Data h2 {
-    font: 'Roboto';
+    font-family: 'Roboto';
     font-weight: 700;
     font-size: 24px;
     line-height: 28.13px;
@@ -26,7 +26,7 @@
 }
 
 .request-Sucess-Data p {
-    font: 'Roboto';
+    font-family: 'Roboto';
     font-weight: 400;
     font-size: 22px;
     line-height: 25.78px;
