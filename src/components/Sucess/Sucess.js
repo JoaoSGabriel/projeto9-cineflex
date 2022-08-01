@@ -3,7 +3,7 @@ import "./style.css";
 
 export default function Sucess (props) {
     const {request_Data} = props;
-    const seats_Buyed = request_Data.seats
+    const seats_Buyed = request_Data.seats.sort((a, b) => a - b);
 
     return(
         <>
