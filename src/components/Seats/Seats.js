@@ -9,8 +9,14 @@ export default function Seats (props) {
         if (text === 'false') {
             setChoose('seats');
             setSelect('true');
-            reserved_Seats.splice((reserved_Seats.length - 1), 1);
-            number_Reserved_Seats.splice((number_Reserved_Seats.length - 1), 1);
+            for (let i = 0; i < reserved_Seats.length; i = i + 1) {
+                if (reserved_Seats[i] === id) {
+                    reserved_Seats.splice(i, 1);
+                }
+                if (number_Reserved_Seats[i] === numero) {
+                    number_Reserved_Seats.splice(i, 1);
+                }
+            }
         } else if (text === 'true') {
             setChoose('seats select');
             setSelect('false');
